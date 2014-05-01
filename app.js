@@ -1,3 +1,6 @@
+//Attach global variables
+require('./globals');
+
 
 /**
  * Module dependencies.
