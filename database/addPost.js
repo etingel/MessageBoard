@@ -9,7 +9,7 @@ curl -d "threadid=1&body=an%20awesome%20message" http://localhost:3000/createpos
 var addPost = function(data) {
     var threadid = data['threadid'];
     var body = data['body'];
-    runQuery("SELECT id FROM threads WHERE id=$1", [threadid])
+    return runQuery("SELECT id FROM threads WHERE id=$1", [threadid])
     .then(function (res) {
         if(res.rowCount == 0) {
             // thread doesn't exist, throw 400
@@ -24,7 +24,13 @@ var addPost = function(data) {
         .then(function (results) {
             var pid = results.rows[0].id;
             return {'postid':pid}; // success status, even though it isn't needed here
+        })
+        .fail(function (error) {
+            throw error;
         });
+    })
+    .fail(function (error) {
+        throw error;
     });
 };
 

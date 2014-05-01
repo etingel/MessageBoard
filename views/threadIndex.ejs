@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>MessageBoard</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Threads:</h1>
+    <% for(var i=0; i < threads.length; i++) { %>
+       <div>
+          <a href="/viewthread?threadid=<%= parseInt(threads[i].id) %>"><%= threads[i].subject %></a>
+       </div>
+    <% } %>
   </body>
 </html>

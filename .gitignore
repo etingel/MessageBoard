@@ -5,3 +5,4 @@ deploy.cgi
 .idea/
 .project
 *~
+app.log

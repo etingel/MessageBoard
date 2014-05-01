@@ -6,7 +6,7 @@ var getPosts = function (data) {
     var threadid = data['threadid'];
     logger.info("Getting posts from database for threadid", threadid);
 
-    runQuery("SELECT subject FROM threads WHERE id=$1", [threadid])
+    return runQuery("SELECT subject FROM threads WHERE id=$1", [threadid])
     .then(function (res) {
         if(res.rowCount == 0) {
             // thread doesn't exist, throw 404
@@ -27,7 +27,14 @@ var getPosts = function (data) {
             var posts = results.rows;
             logger.info("Got posts from database for threadid", threadid);
             return {subject: threadSubject, posts: posts};
+        })
+        .fail(function (error) {
+            throw error;
         });
+    })
+    .fail(function (error) {
+        throw error;
+    });
 };
 
 
