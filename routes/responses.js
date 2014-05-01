@@ -30,4 +30,14 @@ function errorResponse(err, response) {
 
     logger.error("HTTP error response sent", err)
 }
+
+function POSTSuccessResponse(path, response) {
+    response.writeHead("303", {"Location": path, "Content-Type": "text/plain; charset=utf-8"});
+    response.write("303 See Other" + "\n");
+    response.write("Data successfully received, please move along..." + "\n");
+    response.end();
+
+    logger.error("HTTP redirect response sent", path)
+}
 exports.errorResponse = errorResponse;
+exports.POSTSuccessResponse = POSTSuccessResponse;

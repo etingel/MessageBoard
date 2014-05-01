@@ -26,6 +26,7 @@ exports.thread = function(req, res){
     threadid = parseInt(data["threadid"]);
     db.getPosts({threadid: threadid})
     .then(function (postdata) {
+        postdata["threadid"] = threadid;
         res.render('thread', postdata);
     })
     .fail(function (error) {

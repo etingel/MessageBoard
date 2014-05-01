@@ -11,5 +11,9 @@
           <a href="/viewthread?threadid=<%= parseInt(threads[i].id) %>"><%= threads[i].subject %></a>
        </div>
     <% } %>
+    <form action="/createthread" method="post"">
+      <div>Subject: <input type=text name=subject></div>
+      <div>Body: <textarea name=body></textarea> <input type="submit" value="Submit"></div>
+    </form>
   </body>
 </html>
