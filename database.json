@@ -1,0 +1,11 @@
+{
+    "dev": "postgres://messageboard:onlyfordev@localhost/messageboard",
+    "test": "postgres://messageboard:onlyfordev@localhost/messageboardtest",
+    "prod": {
+        "driver": "pg",
+        "user": {"ENV": "MESSAGEBOARD_DATABASE_USER"},
+        "password": {"ENV": "MESSAGEBOARD_DATABASE_PASSWORD"},
+        "database": "messsageboard",
+        "host": "localhost"
+    }
+}
