@@ -17,7 +17,7 @@ var getPosts = function (data) {
             err['friendlyName'] = "Tried to get posts for non-existent threadid";
             throw err;
         }
-        var threadSubject = results.rows[0].subject;
+        var threadSubject = res.rows[0].subject;
         var postsQueryString = 'SELECT posts.id AS postid, posts.body \
                                FROM threads \
                                    INNER JOIN posts ON threads.id = posts.threadid AND threads.id = $1 \

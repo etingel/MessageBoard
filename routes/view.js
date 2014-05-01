@@ -13,5 +13,22 @@ exports.threadIndex = function(req, res){
 };
 
 exports.thread = function(req, res){
-    res.render('threadIndex', { title: 'Express' });
+    var data = req.query;
+    if (data["threadid"] === undefined || isNaN(parseInt(data["threadid"]))) {
+        logger.error("Invalid threadid:", data["threadid"]);
+        var err = Error();
+        err['httpStatus'] = 400;
+        err['httpResponse'] = "400 Bad Request";
+        err['friendlyName'] = "Did not provide valid threadid";
+        errorResponse(err, res);
+        return;
+    }
+    threadid = parseInt(data["threadid"]);
+    db.getPosts({threadid: threadid})
+    .then(function (postdata) {
+        res.render('thread', postdata);
+    })
+    .fail(function (error) {
+        errorResponse(error, res);
+    });
 };
